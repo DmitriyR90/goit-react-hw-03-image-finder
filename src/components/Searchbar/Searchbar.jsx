@@ -1,5 +1,13 @@
 import { Component } from 'react';
-import { Field, Form, Formik } from 'formik';
+import { Formik } from 'formik';
+import {
+  Header,
+  SearchForm,
+  SearchBtn,
+  // SearchBtnLabel,
+  SearchInput,
+} from './Searchbar.styled';
+import { TbSearch } from 'react-icons/tb';
 
 export class Searchbar extends Component {
   handleSubmit = (values, actions) => {
@@ -9,26 +17,32 @@ export class Searchbar extends Component {
 
   render() {
     return (
-      <header>
+      <Header>
         <Formik
           initialValues={{ searchField: '' }}
           onSubmit={this.handleSubmit}
         >
-          <Form>
-            <button type="submit">
-              <span>Search</span>
-            </button>
+          <SearchForm>
+            <SearchBtn type="submit">
+              <TbSearch size="24" />
+              {/* <SearchBtnLabel>Search</SearchBtnLabel> */}
+            </SearchBtn>
 
-            <Field
+            <SearchInput
               type="text"
               autoComplete="off"
               autoFocus
               placeholder="Search images and photos"
               name="searchField"
             />
-          </Form>
+          </SearchForm>
         </Formik>
-      </header>
+      </Header>
     );
   }
 }
+
+// style={{
+//   width: '32px',
+//   heigth: '32px',
+// }}
