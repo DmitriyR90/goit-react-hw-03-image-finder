@@ -2,12 +2,9 @@ import { Component } from 'react';
 import { Searchbar } from './Searchbar/Searchbar';
 import axios from 'axios';
 import { ImageGallery } from './ImageGallery/ImageGallery';
-import { ImageGalleryItem } from './ImageGalleryItem/ImageGalleryItem';
 import { Button } from './Button/Button';
 import { Loader } from './Loader/Loader';
 import { Modal } from './Modal/Modal';
-
-// import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 axios.defaults.baseURL = 'https://pixabay.com/api';
 const API_KEY = '29525143-9c76bb8aba39698f94cc40e50';
@@ -50,8 +47,9 @@ export class App extends Component {
       this.setState({ isLoading: false });
     }
 
-    if (totalHits <= showedHits) {
+    if (totalHits <= showedHits || totalHits <= PER_PAGE) {
       this.setState({ showLoadMore: false });
+      this.setState({ isLoading: false });
     }
   }
 
@@ -69,14 +67,17 @@ export class App extends Component {
     this.setState({ largeImgUrl: url });
   };
 
-  toggleModal = () => {
-    console.log('toggle');
+  toggleModal = url => {
+    this.getLargeImgUrl(url);
+
     this.setState(({ showModal }) => ({
       showModal: !showModal,
     }));
   };
 
   render() {
+    const { images, isLoading, showLoadMore, largeImgUrl } = this.state;
+
     return (
       <div
         style={{
@@ -89,21 +90,15 @@ export class App extends Component {
         <Searchbar onSearch={this.handleSearch} />
 
         {this.state.images && (
-          <ImageGallery
-            gallery={this.state.images}
-            onImgClick={this.toggleModal}
-          />
+          <ImageGallery gallery={images} onImgClick={this.toggleModal} />
         )}
-        <Loader status={this.state.isLoading} />
-        {this.state.showLoadMore && !this.state.isLoading && (
+        <Loader status={isLoading} />
+        {showLoadMore && !isLoading && (
           <Button loadMore={this.handleLoadMore} />
         )}
         {this.state.showModal && (
           <Modal onClose={this.toggleModal}>
-            <img
-              src="https://cdn.pixabay.com/user/2022/10/03/02-16-32-176_250x250.jpg"
-              alt=""
-            />
+            <img src={largeImgUrl} alt="info" />
           </Modal>
         )}
       </div>

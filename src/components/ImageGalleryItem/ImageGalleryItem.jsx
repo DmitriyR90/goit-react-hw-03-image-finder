@@ -1,9 +1,10 @@
 import { GalleryItem, Image } from './ImageGalleryItem.styled';
 
-export const ImageGalleryItem = ({ galleryItem }) => {
+export const ImageGalleryItem = ({ galleryItem, onClick }) => {
+  const { largeImageURL, webformatURL, tags } = galleryItem;
   return (
-    <GalleryItem>
-      <Image src={galleryItem.webformatURL} alt={galleryItem.tags} />
+    <GalleryItem onClick={e => onClick(largeImageURL)}>
+      <Image src={webformatURL} alt={tags} />
     </GalleryItem>
   );
 };

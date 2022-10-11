@@ -1,12 +1,6 @@
 import { Component } from 'react';
 import { Formik } from 'formik';
-import {
-  Header,
-  SearchForm,
-  SearchBtn,
-  // SearchBtnLabel,
-  SearchInput,
-} from './Searchbar.styled';
+import { Header, SearchForm, SearchBtn, SearchInput } from './Searchbar.styled';
 import { TbSearch } from 'react-icons/tb';
 
 export class Searchbar extends Component {
@@ -25,7 +19,6 @@ export class Searchbar extends Component {
           <SearchForm>
             <SearchBtn type="submit">
               <TbSearch size="24" />
-              {/* <SearchBtnLabel>Search</SearchBtnLabel> */}
             </SearchBtn>
 
             <SearchInput
@@ -41,8 +34,3 @@ export class Searchbar extends Component {
     );
   }
 }
-
-// style={{
-//   width: '32px',
-//   heigth: '32px',
-// }}

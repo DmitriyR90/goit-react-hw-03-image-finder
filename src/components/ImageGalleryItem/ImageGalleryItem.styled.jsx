@@ -16,15 +16,3 @@ export const Image = styled.img`
     cursor: zoom-in;
   }
 `;
-
-/*
-.ImageGalleryItem {
- 
-}
-
-.ImageGalleryItem-image {
-
-}
-
-.ImageGalleryItem-image
-*/

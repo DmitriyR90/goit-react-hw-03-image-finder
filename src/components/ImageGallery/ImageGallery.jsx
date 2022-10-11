@@ -13,7 +13,6 @@ export class ImageGallery extends Component {
             <ImageGalleryItem
               key={image.id}
               galleryItem={image}
-              largeImg={image.largeImageURL}
               onClick={onImgClick}
             />
           );
@@ -22,26 +21,3 @@ export class ImageGallery extends Component {
     );
   }
 }
-
-/*
-export const ImageGallery = ({ gallery, onImgClick }) => {
-  return (
-    <Gallery
-      onClick={e => {
-        console.log(e.currentTarget);
-        onImgClick();
-      }}
-    >
-      {gallery.map(image => {
-        return (
-          <ImageGalleryItem
-            key={image.id}
-            galleryItem={image}
-            largeImg={image.largeImageURL}
-          />
-        );
-      })}
-    </Gallery>
-  );
-};
-*/
