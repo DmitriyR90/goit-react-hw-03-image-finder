@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { Formik } from 'formik';
 import { Header, SearchForm, SearchBtn, SearchInput } from './Searchbar.styled';
 import { TbSearch } from 'react-icons/tb';
+import PropTypes from 'prop-types';
 
 export class Searchbar extends Component {
   handleSubmit = (values, actions) => {
@@ -34,3 +35,7 @@ export class Searchbar extends Component {
     );
   }
 }
+
+Searchbar.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+};
